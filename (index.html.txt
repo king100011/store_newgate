@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة شخصية</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2em;
+        }
+        p {
+            font-size: 1.2em;
+        }
+        .location {
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <h1>السلام عليكم أهلا بكم</h1>
+    <p>مرحباً بكم في صفحتي الشخصية</p>
+    <div class="location" id="location">
+        جاري تحديد موقعك...
+    </div>
+
+    <script>
+        // تحقق مما إذا كان المتصفح يدعم ميزة تحديد الموقع
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                document.getElementById("location").innerHTML = `موقعك الحالي هو: خط العرض ${latitude}، وخط الطول ${longitude}`;
+            }, function(error) {
+                document.getElementById("location").innerHTML = "لم نتمكن من تحديد موقعك.";
+            });
+        } else {
+            document.getElementById("location").innerHTML = "الميزة غير مدعومة في متصفحك.";
+        }
+    </script>
+</body>
+</html>
